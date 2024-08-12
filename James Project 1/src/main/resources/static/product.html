@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLISH - Product Details</title>
+    <link rel="stylesheet" href="css/styles_product.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="asset/logo.png" alt="Logo"></a>
+            </div>
+            <ul>
+                <li><a href="#" data-category="women">女&nbsp;&nbsp;裝</a></li>
+                <li>|</li>
+                <li><a href="#" data-category="men">男&nbsp;&nbsp;裝</a></li>
+                <li>|</li>
+                <li><a href="#" data-category="accessories">配&nbsp;&nbsp;件</a></li>
+            </ul>
+            <div class="header-right">
+                <div class="search">
+                    <input type="text" placeholder="搜尋">
+                    <button><img src="asset/search.png" alt="Search"></button>
+                </div>
+                <div class="login-icon">
+                    <a href="profile.html"><img src="asset/member.png" alt="Member"></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="horizontal-band"></div>
+
+    <section class="product-details" id="product-details">
+        <!-- Load product-details -->
+    </section>
+
+    <!-- Modal for Payment -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Credit Card Payment</h2>
+            <div id="card-number" class="tappay-field"></div>
+            <div id="card-expiration-date" class="tappay-field"></div>
+            <div id="card-ccv" class="tappay-field"></div>
+            <button id="pay-button">Pay</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#">關於 STYLiSH</a>
+                <span>|</span>
+                <a href="#">服務條款</a>
+                <span>|</span>
+                <a href="#">隱私政策</a>
+                <span>|</span>
+                <a href="#">聯絡我們</a>
+                <span>|</span>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-icons">
+                <a href="#"><img src="asset/line.png" alt="LINE"></a>
+                <a href="#"><img src="asset/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="asset/facebook.png" alt="Facebook"></a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2024. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://js.tappaysdk.com/sdk/tpdirect/v5.18.0"></script>
+    <script src="js/script_product.js"></script>
+</body>
+</html>

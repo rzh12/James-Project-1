@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook Login</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        #login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container">
+        <h2>Login with Facebook</h2>
+        <div id="fb-root"></div>
+        <!-- Load the Facebook SDK asynchronously -->
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+        <script>
+            // Initialize the Facebook SDK
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '832378272186952',
+                    cookie     : true,
+                    xfbml      : true,
+                    version    : 'v20.0'
+                });
+                FB.AppEvents.logPageView();
+            };
+
+            // Check the login state when the user logs in
+            function checkLoginState() {
+                FB.getLoginStatus(function(response) {
+                    statusChangeCallback(response);
+                });
+            }
+
+            // Handle the response
+            function statusChangeCallback(response) {
+                if (response.status === 'connected') {
+                    let accessToken = response.authResponse.accessToken;
+                    sendTokenToBackend(accessToken);
+                } else {
+                    console.log('User not authenticated');
+                }
+            }
+
+            // Send the Facebook access token to the backend
+            function sendTokenToBackend(token) {
+                fetch('/api/1.0/user/signin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        provider: 'facebook',
+                        access_token: token
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    console.log('Backend access token:', data.data.access_token);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+        </script>
+        <!-- Facebook login button -->
+        <fb:login-button
+            scope="public_profile,email" 
+            onlogin="checkLoginState();">
+        </fb:login-button>
+    </div>
+</body>
+</html>
